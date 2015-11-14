@@ -1,0 +1,4 @@
+accounts.firefox.com:HSTS	0	16752	1462952249402,1,1
+stats.g.doubleclick.net:HSTS	0	16752	1458286648183,1,0
+easylist-downloads.adblockplus.org:HSTS	0	16752	1478936273029,1,0
+notification.adblockplus.org:HSTS	0	16752	1478936293875,1,0

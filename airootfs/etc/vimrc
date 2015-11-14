@@ -1,0 +1,100 @@
+syntax on                                                       "语法高亮支持
+set nu                                                          "显示行号
+set rnu                                                         "显示相对行号
+set wrap                                                        "当一行文字很长时换行
+set showmatch                                                   "当光标移动到一个括号时会高亮显示对应的另一个括号
+set showcmd                                                     "回显输入的命令
+set showmode                                                    "显示当前的模式
+set clipboard+=unnamed                                          "关联系统的剪贴板
+set ruler                                                       "在编辑过程中右下角显示光标的行列信息
+set nocp                                                        "让Vim工作在不兼容模式下
+set encoding=utf-8                                              "默认使用utf-8编码格式
+set shortmess=atI                                               "启动时不显示捐助乌干达儿童的提示
+set so=6                                                        "上下滚行时空余6行
+set autoindent                                                  "自动套用上一行的缩进方式
+set smartindent                                                 "智能缩进
+set mouse=a                                                     "开启鼠标支持
+set laststatus=2                                                "总是显示状态行
+set backspace=indent,eol,start                                  "对退格键提供更好的支持
+set ts=4                                                        "设置tab长度为4
+set sts=4                                                       "设置制表符宽度
+set shiftwidth=4                                                "设置缩进空格数
+set expandtab                                                   "用空格代替tab键
+set smarttab                                                    "更加智能的tab键
+set hid                                                         "当buffer被丢弃时隐藏它
+set encoding=utf-8                                              "设置默认编码方式
+set fileencodings=utf-8,cp936,gb18030,big5,euc-kr,latin1        "自动判断编码时 依次尝试一下编码
+set ffs=unix,dos,mac                                            "设置文件类型
+set hlsearch                                                    "高亮搜索内容
+set ignorecase                                                  "搜索模式里忽略大小写
+set smartcase                                                   "如果搜索字符串里包含大写字母，则禁用 ignorecase
+set incsearch                                                   "显示搜索的动态匹配效果
+set lazyredraw                                                  "解决某些类型的文件由于syntax导致vim反应过慢的问题
+set ttyfast
+set foldmethod=indent                                           "折叠方式
+set nofoldenable                                                "不自动折叠
+set completeopt-=preview                                        "不显示预览窗口
+set foldcolumn=1                                                "在行号前空出一列的宽度
+"set nowrap                                                      "当一行文字很长时取消换行
+"set history=100                                                "设置历史记录条数
+"set autoread                                                   "当文件在外部被修改时自动载入
+"set cindent                                                    "使用c语言的缩进格式
+"set whichwrap+=<,>,h,l                                         "允许backspace和光标键跨越行边界
+"set cmdheight=2                                                "显示两行命令行
+
+set list lcs=tab:\┊\ ,trail:•                                   "显示tab键为┊，并且显示每行结尾的空格为'•'
+"一些备用字符:›┆┇┊┋♠♦•
+"我的状态行显示的内容
+set statusline=[%t]\ %y\ %m%=%{&fileencoding}\ [%{&ff}]\ [%l,\ %c]\ [%L]\ [%p%%]
+
+"备份设置
+"set nobackup                                                   "不进行备份
+"set nowb                                                       "重新载入文件时不要备份
+"set noswapfile                                                 "不使用swf文件，可能导致错误无法恢复
+
+"关闭错误声音
+set noerrorbells
+set novisualbell
+set  t_vb=
+
+"打开一个文件自动定位到上一次退出的位置
+if has("autocmd")
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+"保存.vim文件后不用退出即可生效
+"au! bufwritepost .vimrc source %
+
+"修改<leader>的键盘映射
+nmap , <leader>
+"当按下\+Enter时取消搜索高亮
+map <silent> <leader><cr> :noh<cr>
+"设置以空格打开和关闭折叠
+nmap <space> @=((foldclosed(line('.'))<0)?'zc':'zo')<CR>
+"当一行很长时把分开的段行当作一行来移动
+map j gj
+map k gk
+"visual模式下快速对齐
+vnoremap < <gv
+vnoremap > >gv
+"将Esc键映射到jj
+im jj <Esc>
+im JJ <Esc>
+im zz <Esc>
+map zz <Esc>
+im ZZ <Esc>
+map ZZ <Esc>
+"quickfix相关的一些快捷键
+map cop :copen<CR>
+map ccl :cclose<CR>
+map cn :cn<CR>
+map cp :cp<CR>
+"更方便的窗口间跳转
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+"emacs式的行内跳转
+map <c-a> ^
+map <c-e> $
+imap <c-a> <Esc>^i
+imap <c-e> <Esc>$a
